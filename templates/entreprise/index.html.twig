@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Entreprises{% endblock %}
+
+{% block body %}
+<h1>Liste des Entreprises</h1><br>
+<a href="{{path('add_entreprise')}}">Ajouter une entreprise</a><br>
+<p> Il y a {{ entreprises | length}} entreprises </p>
+{% for entreprise in entreprises %}
+
+    <a href="{{ path('show_entreprise', {'id': entreprise.id}) }}">{{entreprise}}</a> {{~ ' '~ entreprise.adresseComplete ~  '('~ entreprise.dateCreation | date('d-m-Y')~ ')'}}&nbsp
+    <a href="{{ path('delete_entreprise',{'id':entreprise.id})}}">Supprimer</a>
+    <a href="{{ path('update_entreprise',{'id':entreprise.id}) }}">Editer</a><br>
+{% endfor %}
+
+{# Pour le chemin toujours path(ICI LE NAME DE LA ROUTE ) #}
+
+{% endblock %}

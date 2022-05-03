@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des employés{% endblock %}
+
+{% block body %}
+<h1>Liste des Employés</h1><br>
+<a href="{{path('add_employe')}}">Ajouter un employé</a><br>
+{% if employes | length > 0 %}
+<p> Il y a {{ employes | length}} employés </p>
+{% for employe in employes %}
+
+   <a href="{{path('show_employe',{'id':employe.id})}}">{{employe}}</a> {{'('~ employe.entreprise ~')'}}&nbsp
+   <a href="{{ path('delete_employe',{'id':employe.id})}}">Supprimer</a>&nbsp
+   <a href="{{ path('update_employe', {'id':employe.id}) }}">Editer</a><br>
+
+{% endfor %}
+{% else%}
+<p> Il n'y à pas d'employés ! <p>
+{% endif %}
+{% endblock %}
